@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap');
+
+:root {
+  --primary-color: #bababa;
+  --secondary-color:#8d8d8d;
+  --accent1-color: #a6cbeb;
+  --accent2-color: #4c96d7;
+  --main-color:#3a3a3a;
+  --main-color2:#ffffff;
+
+  --heading-font: 'Merriweather', sans-serif;
+  --paragraph-font: 'Roboto', sans-serif;
+}
+
+
+
+body {
+  font-family: var(--paragraph-font);
+  
+}
+
+/* Reset some default margin and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  
+}
+
+/*styles to my navigation */
+nav {
+  padding: 10px;
+  color: var(--main-color2);
+  background: var(--main-color);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav a {
+  color: var(--main-color2);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav a:hover {
+  border-bottom: 2px solid var(--main-color2);
+}
+
+/* Apply styles to the header */
+header {
+  color: var(--main-color);
+  padding: 10px 0;
+  text-align: center;
+  background-color:var(--main-color2); 
+  
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto; 
+}
+
+/* Apply styles to the footer */
+footer {
+  background-color: var(--main-color2);
+  color: var(--main-color);
+  text-align: center;
+  padding: 10px 0;
+  border-color: #3a3a3a;
+  
+}
+
+.logo2{
+  color: var(--main-color);
+}
+
+.logo2 a{
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+.logo2 a:hover{
+  border-bottom: 2px solid var(--main-color);
+}
+
+main{
+  background: var(--main-color2);
+  font-size: x-large;
+  font-weight: bold;
+  padding: 20px;
+}
+
+hr{
+  background-color: var(--main-color);
+  border-width: 2px;
+
+}
