@@ -8,7 +8,7 @@
   <meta property="og:image" content="https://www.krazybutterfly.com/wp-content/uploads/2023/03/Lagos-Nigeria.jpg">
   <meta property="og:url" content="https://github.com/Fex-zi/phpmotors">
   <title>PHP Motors | Home </title>
-  <meta name="description" content="Homepage for PhP Motors">
+  <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
   <link rel="icon" href="images/logo.png">
   <link href="styles/base.css" rel="stylesheet" media="screen">
