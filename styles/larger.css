@@ -4,7 +4,7 @@
   --primary-color: #bababa;
   --secondary-color:#8d8d8d;
   --accent1-color: #a6cbeb;
-  --accent2-color: #4c96d7;
+  --accent2-color: #0000FF;
   --main-color:#3a3a3a;
   --main-color2:#ffffff;
 
@@ -12,17 +12,50 @@
   --paragraph-font: 'Roboto', sans-serif;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
 
   .border-bg{
   border: 4px solid var(--accent2-color);
   box-sizing: border-box;
   border-radius: 4px;
+  background: var(--main-color2);
   }
 
   body, html {
-  margin: 5px;
-  padding: 5px;
-  
+  margin: 15px;
+  padding: 12px; 
+}
+
+nav a {
+  color: var(--main-color2);
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+.div3 {
+  display: flex; 
+  background: var(--main-color2);
+}
+.box {
+  width: 50%; 
+  padding: 20px;
+}
+.div2 img{
+  top:-180px;
+  position: relative;
+  z-index: 0;
+  width:90%;
+}
+.cta-btn{
+  background-color: var(--accent2-color);
+  color: var(--main-color2);
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+}
+.cta-btn2 {
+  display: none;
 }
 }

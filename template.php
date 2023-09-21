@@ -7,7 +7,7 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.krazybutterfly.com/wp-content/uploads/2023/03/Lagos-Nigeria.jpg">
   <meta property="og:url" content="https://github.com/Fex-zi/phpmotors">
-  <title>PHP Motors</title>
+  <title>PHP Motors Template</title>
   <meta name="description" content="Homepage for Php Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
   <link rel="icon" href="images/logo.png">
@@ -26,7 +26,7 @@
 <!-- other content here-->
 <main>  
   
-<div>Content Title here</div>
+<div class="div1">Content Title here</div>
 
 </main>
 

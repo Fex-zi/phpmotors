@@ -4,7 +4,7 @@
   --primary-color: #bababa;
   --secondary-color:#8d8d8d;
   --accent1-color: #a6cbeb;
-  --accent2-color: #4c96d7;
+  --accent2-color: #0000FF;
   --main-color:#3a3a3a;
   --main-color2:#ffffff;
 
@@ -47,7 +47,7 @@ nav li {
 nav a {
   color: var(--main-color2);
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
@@ -101,15 +101,97 @@ footer {
   border-bottom: 2px solid var(--main-color);
 }
 
-main{
+.div1{
   background: var(--main-color2);
   font-size: x-large;
   font-weight: bold;
   padding: 20px;
 }
 
+.div2{
+  text-align:center;
+  background: var(--main-color2);
+}
+
 hr{
   background-color: var(--main-color);
   border-width: 2px;
+}
 
+.div3 { 
+  background: var(--main-color2);
+  text-align: center;
+  top: -90px;
+  position: relative;
+}
+
+.box {
+  width: 100%; 
+  
+}
+
+.border-bg{ 
+  background: var(--main-color2);
+  }
+
+.box img{
+   height: 60px; 
+}
+
+.box div{
+  width: 30%;
+  background: var(--accent2-color);
+  display: inline-block;
+  height: 60px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 2px;
+  border: 1px solid var(--main-color);
+}
+
+h1{
+  background: var(--main-color2);
+  font-size: large;
+  font-weight: bold;
+  text-align: justify;
+  margin-left: 55px; 
+}
+.box-p1{
+  background: var(--main-color2);
+  font-size: large;
+  text-align: left;
+  margin-left: 55px; 
+}
+.side{
+position: relative;
+top: 0;
+left: 40px;
+width: 200px;
+color: var(--accent2-color);
+text-align: left;
+z-index: 1;
+}
+.cta-btn2{
+  background-color: var(--accent2-color);
+  color: var(--main-color2);
+  width: 200px;
+  height: 60px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.cta-btn {
+  display: none;
+}
+
+.div2 img{
+  top:-100px;
+  position: relative;
+  z-index: 0;
+  width:90%;
+}
+.div3 a{
+  color: var(--accent2-color);
+  background: var(--main-color2)
 }
