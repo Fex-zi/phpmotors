@@ -7,12 +7,13 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.krazybutterfly.com/wp-content/uploads/2023/03/Lagos-Nigeria.jpg">
   <meta property="og:url" content="https://github.com/Fex-zi/phpmotors">
-  <title>PHP Motors Template</title>
-  <meta name="description" content="Homepage for Php Motors">
+  <title>PHP Motors | Template </title>
+  <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
   <link rel="icon" href="images/logo.png">
   <link href="styles/base.css" rel="stylesheet" media="screen">
   <link href="styles/larger.css" rel="stylesheet" media="screen">
+  <link href="styles/normalize.css" rel="stylesheet" media="screen">
   
   
 </head>

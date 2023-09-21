@@ -13,6 +13,7 @@
   <link rel="icon" href="images/logo.png">
   <link href="styles/base.css" rel="stylesheet" media="screen">
   <link href="styles/larger.css" rel="stylesheet" media="screen">
+  <link href="styles/normalize.css" rel="stylesheet" media="screen">
   
   
 </head>
