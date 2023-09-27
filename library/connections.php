@@ -3,7 +3,7 @@
 function phpmotorsConnect(){
  $server = 'Localhost';
  $dbname= 'phpmotors';
- $username = 'Ifeanyi';
+ $username = 'Ifeanyi2';
  $password = 'ifesco'; 
  $dsn = "mysql:host=$server;dbname=$dbname";
  $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
@@ -13,7 +13,7 @@ function phpmotorsConnect(){
   $link = new PDO($dsn, $username, $password, $options);
   return $link;
  } catch(PDOException $e) {
-  header('Location: /phpmotors/view/500.php');
+  header('Location: ../view/500.php');
   exit;
  }
 }
