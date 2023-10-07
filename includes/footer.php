@@ -2,7 +2,7 @@
 <footer >
     <hr>
         <p>&copy; 2023 PHP Motors. All time reserved.</p>
-        <p>All images used are believed to be in 'Fair use'. Please notify the author if are not and they will be removed.</p>
+        <p>All images used are believed to be in 'Fair use'. Please notify the author if they are not and they will be removed.</p>
     <?php
         $current_file_name = basename($_SERVER['PHP_SELF']);
         $file_last_modified = filemtime($current_file_name); 

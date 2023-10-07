@@ -7,10 +7,10 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.krazybutterfly.com/wp-content/uploads/2023/03/Lagos-Nigeria.jpg">
   <meta property="og:url" content="https://github.com/Fex-zi/phpmotors">
-  <title>PHP Motors | Template </title>
+  <title>PHP Motors | User Register </title>
   <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
-  <link rel="icon" href="../images/logo.png">
+  <link rel="icon" href="images/logo.png">
   <link href="../styles/base.css" rel="stylesheet" media="screen">
   <link href="../styles/larger.css" rel="stylesheet" media="screen">
   <link href="../styles/normalize.css" rel="stylesheet" media="screen">
@@ -27,12 +27,26 @@
 <!-- other content here-->
 <main>  
   
-<div class="div1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Server Error</div>
-<p class="box-p1">Sorry our server seems to experiencing some technical issues. Please check back later.</p>
+<div class="div-lgn"> 
+    <h2 class="acc">Register</h2><br>
+    <form>
+    <label for="firstname" class="acc">Firstname</label><br>
+      <input type="text" placeholder="Enter your firstname" id="firstname" class="acc" required><br>
+    <label for="lastname" class="acc">Lastname</label><br>
+      <input type="text" placeholder="Enter your lastname" id="lastname" class="acc" required><br>
+    <label for="email" class="acc">Email</label><br>
+      <input type="email" placeholder="Enter your Email" id="email" class="acc" required><br>
+    <label for="password" class="acc">Password</label><br>
+      <input type="password" placeholder="Enter your Password" id="password" class="acc" required><br>
+      <button type="submit" class="lgn-btn">Register</button>
+    </form>
+    <br>
+    
+</div>
 
 </main>
 
-<?php require_once('../includes/footer.php'); ?> 
+<?php require_once('../includes/footer.php'); ?>
 </div>
 </body>
 </html>

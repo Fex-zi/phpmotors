@@ -2,7 +2,7 @@
 <nav>
     <div class="container">
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li><a href="#">Classic</a></li>
             <li><a href="#">Sports</a></li>
             <li><a href="#">SUV</a></li>

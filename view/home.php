@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,18 +16,24 @@
   <link href="styles/normalize.css" rel="stylesheet" media="screen">
   
   
+  
 </head>
 
 <body style='background: url("images/site/small_check.jpg"); background-size: cover;'>
 <div class="border-bg">
-<?php require_once('includes/header.php');?>
+<?php require_once('./includes/header.php');?>
 
-<?php require_once('includes/navigation.php'); ?>
+<?php //require_once('includes/navigation.php'); ?>
+<nav>
+  <div class="container">
+  <?php echo $navList; ?>
+</div>
+</nav>
+
 
 <!-- other content here-->
 <main>  
  <div class="div1">Welcome to PHP Motors !</div>
-
  <div class="div2"> 
   <div class="side">
     <p><b>DMC Delorean</b></p>
@@ -63,9 +68,8 @@
  </div>
 
 </main>
-<!-- End content here-->
 
-<?php require_once('includes/footer.php'); ?> 
+<?php require_once('includes/footer.php'); ?>
 </div>
 </body>
 </html>
