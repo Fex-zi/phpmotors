@@ -32,7 +32,7 @@
 
 </main>
 
-<?php require_once('../includes/footer.php'); ?> 
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/includes/footer.php'; ?>
 </div>
 </body>
 </html>

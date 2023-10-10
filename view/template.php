@@ -11,9 +11,9 @@
   <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
   <link rel="icon" href="images/logo.png">
-  <link href="../styles/base.css" rel="stylesheet" media="screen">
-  <link href="../styles/larger.css" rel="stylesheet" media="screen">
-  <link href="../styles/normalize.css" rel="stylesheet" media="screen">
+  <link href="styles/base.css" rel="stylesheet" media="screen">
+  <link href="styles/larger.css" rel="stylesheet" media="screen">
+  <link href="styles/normalize.css" rel="stylesheet" media="screen">
   
 </head>
 
@@ -30,7 +30,7 @@
 
 </main>
 
-<?php require_once('../includes/footer.php'); ?> 
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/includes/footer.php'; ?>
 </div>
 </body>
 </html>

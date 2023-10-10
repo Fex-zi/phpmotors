@@ -11,9 +11,9 @@
   <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
   <link rel="icon" href="images/logo.png">
-  <link href="../styles/base.css" rel="stylesheet" media="screen">
-  <link href="../styles/larger.css" rel="stylesheet" media="screen">
-  <link href="../styles/normalize.css" rel="stylesheet" media="screen">
+  <link href="styles/base.css" rel="stylesheet" media="screen">
+  <link href="styles/larger.css" rel="stylesheet" media="screen">
+  <link href="styles/normalize.css" rel="stylesheet" media="screen">
   
   
 </head>
@@ -22,27 +22,37 @@
 <div class="border-bg">
 <?php require_once('includes/header.php');?>
 
-<?php require_once('includes/navigation.php'); ?>
+<nav>
+  <div class="container">
+  <?php echo $navList; ?>
+</div>
+</nav>
 
 <!-- other content here-->
 <main>  
   
 <div class="div-lgn"> 
     <h3 class="acc">Sign In</h3><br>
-    <form>
+<?php
+if (isset($message)) {
+ echo $message;
+}
+?>
+<form action="/phpmotors/index.php" method="post">
     <label for="email" class="acc">Email</label><br>
       <input type="email" placeholder="Enter your Email" id="email" class="acc" required><br>
     <label for="password" class="acc">Password</label><br>
       <input type="password" placeholder="Enter your Password" id="password" class="acc" required><br>
-      <button type="submit" class="lgn-btn">Sign-In</button>
+      <input type="submit" class="lgn-btn" value="Sign-In">
+      <input type="hidden" name="action" value="login">
     </form>
     <br>
-    <a href="../model/account-model.php?action=registration" class="acc">Not a member yet? Sign-UP</a>
+    <a href="./index.php?action=registration" class="acc">Not a member yet? Sign-UP</a>
 </div>
 
 </main>
 
-<?php require_once('../includes/footer.php'); ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/includes/footer.php'; ?>
 </div>
 </body>
 </html>
