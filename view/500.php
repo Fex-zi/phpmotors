@@ -10,19 +10,26 @@
   <title>PHP Motors | Template </title>
   <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
-  <link rel="icon" href="../images/logo.png">
-  <link href="../styles/base.css" rel="stylesheet" media="screen">
-  <link href="../styles/larger.css" rel="stylesheet" media="screen">
-  <link href="../styles/normalize.css" rel="stylesheet" media="screen">
+  <link rel="icon" href="images/logo.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap">
+  <link href="styles/base.css" rel="stylesheet" media="screen">
+  <link href="styles/larger.css" rel="stylesheet" media="screen">
+  <link href="styles/normalize.css" rel="stylesheet" media="screen">
   
   
 </head>
 
-<body style='background: url("../images/site/small_check.jpg"); background-size: cover;'>
+<body style='background: url("images/site/small_check.jpg"); background-size: cover;'>
 <div class="border-bg">
 <?php require_once('includes/header.php');?>
 
-<?php require_once('includes/navigation.php'); ?>
+<?php //require_once('includes/navigation.php'); ?>
+
+<nav>
+  <div class="container">
+  <?php echo $navList; ?>
+</div>
+</nav>
 
 <!-- other content here-->
 <main>  
@@ -32,7 +39,7 @@
 
 </main>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
 </div>
 </body>
 </html>

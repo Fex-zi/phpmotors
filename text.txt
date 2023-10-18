@@ -1,3 +1,5 @@
 Header forwards the user to a new page, so PHP reinitializes it like an HTML meta redirection, but faster.
 
-Include just includes the file to where you call it, and it executes it as PHP
+Include just includes the file to where you call it, and it executes it as PHP 
+
+ 

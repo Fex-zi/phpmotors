@@ -1,5 +1,4 @@
 <?php 
-require_once ('./library/connections.php');
 function getClassifications() {
   // Create a connection object from the phpmotors connection function
   $db = phpmotorsConnect(); 
