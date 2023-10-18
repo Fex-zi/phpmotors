@@ -1,8 +1,4 @@
-<?php
-// Get the database connection file
-
- 
-  
+<?php  
   function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();

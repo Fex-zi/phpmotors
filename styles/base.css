@@ -197,7 +197,6 @@ z-index: 1;
 .lgn-btn{
   background-color: var(--accent2-color);
   color: var(--main-color2);
-  width: 140px;
   height: 40px;
   cursor: pointer;
   font-size: large;

@@ -35,7 +35,7 @@ switch ($action) {
     
     // Check for missing data
     if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){
-      $message = '<p>Please provide information for all empty form fields.</p>';
+      $message = '<p style="color:red">Please provide information for all empty form fields.</p>';
       include '../view/registration.php';
       exit;
     }
@@ -45,11 +45,11 @@ switch ($action) {
     
     // Check and report the result
     if($regOutcome === 1){
-      $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+      $message = "<p style='color:red'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
       include '../view/login.php';
       exit;
     } else {
-      $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
+      $message = "<p style='color:red'>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
       include '../view/registration.php';
       exit;
     }
@@ -66,7 +66,7 @@ case 'registration':
     break;
 
     default:
-    // Default case: Include the home view if no valid action is specified
+    // Default case: Include the login view if no valid action is specified
     include('../view/login.php');
     break;
 }
