@@ -41,7 +41,11 @@ case 'register':
       $classificationId = filter_input(INPUT_POST, 'classificationId');
     
     // Check for missing data
-   
+    if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)){
+      $message = '<p style="color:red">Please provide all the missing fields.</p>';
+      include '../view/add-vehicle.php';
+      exit;
+    }
     
     // Send the data to the model
     $regOutcome = addvehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
