@@ -215,3 +215,11 @@ z-index: 1;
   margin: 9px;
   font-family: var(--heading-font);
 }
+
+input:required{
+  border-left: red solid 6px;
+}
+
+input:required:valid{
+  border-left: green solid 6px;
+}

@@ -94,9 +94,8 @@ case 'vehicle':
     include ('../view/add-vehicle.php');
     break;
 
-    default:
-    
-    include('../view/vehicle-man.php');
+    default: 
+    header ('location: ../view/vehicle-man.php');
     break;
 }
 ?>

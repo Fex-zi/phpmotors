@@ -41,11 +41,11 @@ if (isset($message)) {
 ?>
 <form action="/phpmotors/accounts/index.php" method="post">
     <label for="email" class="acc">Email</label><br>
-      <input type="email" placeholder="Enter your Email" id="email" name="email" class="acc"><br>
-    <label for="password" class="acc">Password</label><br>
-      <input type="password" placeholder="Enter your Password" id="password" name="password" class="acc"><br>
+      <input type="email" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> id="clientEmail" name="clientEmail" class="acc" required><br><br>
+    <label for="password" class="acc">Password<br> &nbsp;&nbsp;Password must be at least 8 characters with 1 uppercase character, 1 number and 1 special character.</label><br>
+      <input type="password" id="clientPassword" name="clientPassword" class="acc" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
       <input type="submit" class="lgn-btn" value="Sign-In">
-      <input type="hidden" name="action" value="login">
+      <input type="hidden" name="action" value="Login">
     </form>
     <br>
     <a href="/phpmotors/accounts/index.php?action=registration" class="acc">Not a member yet? Sign-UP</a>

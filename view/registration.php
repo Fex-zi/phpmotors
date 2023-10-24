@@ -40,13 +40,13 @@ if (isset($message)) {
 ?>
     <form method="post" action="/phpmotors/accounts/index.php">
     <label for="clientFirstname" class="acc">Firstname</label><br>
-      <input type="text" placeholder="Enter your firstname" class="acc" name="clientFirstname" id="clientFirstname"><br>
+      <input type="text" <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";} ?> class="acc" name="clientFirstname" id="clientFirstname" required ><br>
     <label for="clientLastname" class="acc">Lastname</label><br>
-      <input type="text" placeholder="Enter your lastname" class="acc" name="clientLastname" id="clientLastname"><br>
+      <input type="text" <?php if(isset($clientLastname)){echo "value='$clientLastname'";} ?>  class="acc" name="clientLastname" id="clientLastname" required><br>
     <label for="clientEmail" class="acc">Email</label><br>
-      <input type="email" placeholder="Enter your Email"  class="acc" name="clientEmail" id="clientEmail"><br>
-    <label for="clientPassword" class="acc">Password</label><br>
-      <input type="password" placeholder="Enter your Password" class="acc" name="clientPassword" id="clientPassword"><br>
+      <input type="email" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?>   class="acc" name="clientEmail" id="clientEmail" required><br><br>
+    <label for="clientPassword" class="acc">Password<br> &nbsp;&nbsp;Password must be at least 8 characters with 1 uppercase character, 1 number and 1 special character.</label><br>
+      <input type="password" placeholder="Enter your Password" class="acc" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
       <input type="submit" class="lgn-btn" name="submit" value="Register">
       <input type="hidden" name="action" value="register">
     </form>
