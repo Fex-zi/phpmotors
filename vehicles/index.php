@@ -6,19 +6,16 @@ require_once ('../model/main-model.php');
 
 require_once ('../model/vehicles-model.php');
 
+//get functions
+require_once ('../library/functions.php');
+
 
 // Get the array of classifications
 $classifications = getClassifications();
 
+// Navigation Function
+$navList = getnavlist($classifications);
 
-
-// Build a navigation bar using the $classifications array
-$navList = '<ul>';
-$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
-  $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -30,15 +27,15 @@ switch ($action) {
 
 case 'register':
     // Filter and store the data
-      $invMake = filter_input(INPUT_POST, 'invMake');
-      $invModel = filter_input(INPUT_POST, 'invModel');
-      $invDescription = filter_input(INPUT_POST, 'invDescription');
-      $invImage = filter_input(INPUT_POST, 'invImage');
-      $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
-      $invPrice = filter_input(INPUT_POST, 'invPrice');
-      $invStock = filter_input(INPUT_POST, 'invStock');
-      $invColor = filter_input(INPUT_POST, 'invColor');
-      $classificationId = filter_input(INPUT_POST, 'classificationId');
+      $invMake = trim(filter_input(INPUT_POST, 'invMake'));
+      $invModel = trim(filter_input(INPUT_POST, 'invModel'));
+      $invDescription = trim(filter_input(INPUT_POST, 'invDescription'));
+      $invImage = trim(filter_input(INPUT_POST, 'invImage'));
+      $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail'));
+      $invPrice = trim(filter_input(INPUT_POST, 'invPrice'));
+      $invStock = trim(filter_input(INPUT_POST, 'invStock'));
+      $invColor = trim(filter_input(INPUT_POST, 'invColor'));
+      $classificationId = trim(filter_input(INPUT_POST, 'classificationId'));
     
     // Check for missing data
     if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)){
@@ -64,7 +61,7 @@ case 'register':
 
 //create Vehicle classification
 case 'class':
-    $classificationName = filter_input(INPUT_POST, 'classificationName');
+    $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     if(empty($classificationName)){
         $message = '<p style="color:red">Please provide Vehicle Classificaion.</p>';
         include '../view/add-classification.php';
@@ -75,7 +72,7 @@ case 'class':
     
     // Check and report the result
     if($classOutcome === 1){
-      include '../view/add-classification.php';
+      include ('../view/vehicle-man.php');
       exit;
     } else {
       $message = "<p style='color:red'>Sorry the registration failed. Please try again.</p>";
@@ -95,7 +92,7 @@ case 'vehicle':
     break;
 
     default: 
-    header ('location: ../view/vehicle-man.php');
+    include ('../view/vehicle-man.php');
     break;
 }
 ?>

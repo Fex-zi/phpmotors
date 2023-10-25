@@ -41,31 +41,40 @@ if (isset($message)) {
 }
 ?>
 <form action="/phpmotors/vehicles/index.php" method="post">
- <select name="classificationId" id="classificationId">
-  <option selected="selected">Choose Car Classifications</option>
-  <?php
-    foreach ($classifications as $classification) { ?>
-      <option value="<?= $classification['classificationId'] ?>"><?= $classification['classificationName'] ?></option>
-  <?php
+<select name="classificationId" id="classificationId" required>
+    <option disabled selected>Choose Car Classifications</option>
+    <?php
+    foreach ($classifications as $classification) {
+        $selected = '';
+        if (isset($_POST['classificationId']) && $_POST['classificationId'] == $classification['classificationId']) {
+            $selected = 'selected';
+        }
+        ?>
+        <option value="<?= $classification['classificationId'] ?>" <?= $selected ?>>
+            <?= $classification['classificationName'] ?>
+        </option>
+    <?php
     } ?>
+</select>
+
  </select><br><br><br>
 
     <label for="invMake" class="acc">Make</label><br>
-      <input type="text" id="invMake" name="invMake" class="acc"><br><br>
+      <input type="text" id="invMake" name="invMake" class="acc" required <?php if(isset($invMake)){echo "value='$invMake'";} ?>><br><br>
     <label for="invModel" class="acc">Model</label><br>
-      <input type="text"  id="invModel" name="invModel" class="acc"><br><br>
+      <input type="text"  id="invModel" name="invModel" class="acc" required <?php if(isset($invModel)){echo "value='$invModel'";} ?>><br><br>
       <label for="invDescription" class="acc">Description</label><br>
-      <textarea  id="invDescription" name="invDescription" class="acc"></textarea><br><br>
+      <textarea  id="invDescription" name="invDescription" class="acc" required ><?php if(isset($invDescription)){echo "$invDescription";} ?></textarea><br><br>
       <label for="invImage" class="acc">Image Path</label><br>
-      <input type="text" id="invImage" name="invImage" class="acc"><br><br>
+      <input type="text" id="invImage" name="invImage" class="acc" required <?php if(isset($invImage)){echo "value='$invImage'";} ?>><br><br>
     <label for="invThumbnail" class="acc">Thumbnail Path</label><br>
-      <input type="text"  id="invThumbnail" name="invThumbnail" class="acc"><br><br>
+      <input type="text"  id="invThumbnail" name="invThumbnail" class="acc" required <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?>><br><br>
       <label for="invPrice" class="acc">Price</label><br>
-      <input type="text" id="invPrice" name="invPrice" class="acc"><br><br>
+      <input type="text" id="invPrice" name="invPrice" class="acc" required <?php if(isset($invPrice)){echo "value='$invPrice'";} ?>><br><br>
     <label for="invStock" class="acc"># In Stock(0-6)</label><br>
-      <input type="text"  id="invStock" name="invStock" class="acc"><br><br>
+      <input type="text"  id="invStock" name="invStock" class="acc" required <?php if(isset($invStock)){echo "value='$invStock'";} ?>><br><br>
       <label for="invColor" class="acc">Color</label><br>
-      <input type="text"  id="invColor" name="invColor" class="acc"><br>
+      <input type="text"  id="invColor" name="invColor" class="acc" required <?php if(isset($invColor)){echo "value='$invColor'";} ?>><br>
 
       <input type="submit" class="lgn-btn" value="Add Vehicle">
       <input type="hidden" name="action" value="register">
