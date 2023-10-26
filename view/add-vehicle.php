@@ -41,7 +41,7 @@ if (isset($message)) {
 }
 ?>
 <form action="/phpmotors/vehicles/index.php" method="post">
-  
+
 <select name="classificationId" id="classificationId" required>
     <option disabled selected>Choose Car Classifications</option>
     <?php
@@ -70,9 +70,9 @@ if (isset($message)) {
       <input type="text" id="invImage" name="invImage" class="acc" required <?php if(isset($invImage)){echo "value='$invImage'";} ?>><br><br>
     <label for="invThumbnail" class="acc">Thumbnail Path</label><br>
       <input type="text"  id="invThumbnail" name="invThumbnail" class="acc" required <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?>><br><br>
-      <label for="invPrice" class="acc">Price</label><br>
+      <label for="invPrice" class="acc">Price(0-10 digits)</label><br>
       <input type="text" id="invPrice" name="invPrice" class="acc" required <?php if(isset($invPrice)){echo "value='$invPrice'";} ?>><br><br>
-    <label for="invStock" class="acc"># In Stock(0-6)</label><br>
+    <label for="invStock" class="acc"># In Stock(0-6 digits)</label><br>
       <input type="text"  id="invStock" name="invStock" class="acc" required <?php if(isset($invStock)){echo "value='$invStock'";} ?>><br><br>
       <label for="invColor" class="acc">Color</label><br>
       <input type="text"  id="invColor" name="invColor" class="acc" required <?php if(isset($invColor)){echo "value='$invColor'";} ?>><br>

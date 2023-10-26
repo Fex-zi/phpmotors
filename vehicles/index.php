@@ -32,12 +32,29 @@ case 'register':
       $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
       $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
       $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-      $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-      $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+      $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
       $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
       $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     
-    // Check for missing data
+      //get character length function for Price(float)
+      //Later change back invPrice	decimal(10,2)	to invPrice	decimal(10,0)	in Database
+      $error = checkCharacterLimit($invPrice, 10);
+      if (!empty($error)) {
+        $message = "<p style='color:red'>Price Input cannot exceed 10 characters & must be numbers.</p>";
+        include '../view/add-vehicle.php';
+        exit;
+      }
+
+       //get character length function for InvStock
+      $error_1 = checkCharacterLimit($invStock, 6);
+      if (!empty($error_1)) {
+        $message = "<p style='color:red'>Instock value cannot exceed 6 characters & must be numbers.</p>";
+        include '../view/add-vehicle.php';
+        exit;
+      }
+    
+    // Check for missing data n
     if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)){
       $message = '<p style="color:red">Please provide all the missing fields.</p>';
       include '../view/add-vehicle.php';
@@ -71,11 +88,12 @@ case 'register':
 //create Vehicle classification
 case 'class':
     $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-    $maxLength = 30; 
-    $error = checkCharacterLimit($classificationName, $maxLength);
+    
+    //get character length function
+    $error = checkCharacterLimit($classificationName, 30);
 
     if (!empty($error)) {
-      $message = "<p style='color:red'>Input value cannot exceed  '$maxLength' characters.</p>";
+      $message = "<p style='color:red'>Input value cannot exceed 30 characters.</p>";
       include '../view/add-classification.php';
       exit;
     }
