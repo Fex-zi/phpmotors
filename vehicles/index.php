@@ -27,15 +27,15 @@ switch ($action) {
 
 case 'register':
     // Filter and store the data
-      $invMake = trim(filter_input(INPUT_POST, 'invMake'));
-      $invModel = trim(filter_input(INPUT_POST, 'invModel'));
-      $invDescription = trim(filter_input(INPUT_POST, 'invDescription'));
-      $invImage = trim(filter_input(INPUT_POST, 'invImage'));
-      $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail'));
-      $invPrice = trim(filter_input(INPUT_POST, 'invPrice'));
-      $invStock = trim(filter_input(INPUT_POST, 'invStock'));
-      $invColor = trim(filter_input(INPUT_POST, 'invColor'));
-      $classificationId = trim(filter_input(INPUT_POST, 'classificationId'));
+      $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     
     // Check for missing data
     if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)){
@@ -50,6 +50,15 @@ case 'register':
     // Check and report the result
     if($regOutcome === 1){
       $message = "<p style='color:Blue'>Your Vehicle '$invMake - $invModel' has been added successfully.</p>";
+      unset($invMake);
+      unset($invModel);
+      unset($invDescription);
+      unset($invImage);
+      unset($invThumbnail);
+      unset($invPrice);
+      unset($invStock);
+      unset($invColor);
+      unset($_POST['classificationId']);
       include '../view/add-vehicle.php';
       exit;
     } else {
@@ -62,6 +71,15 @@ case 'register':
 //create Vehicle classification
 case 'class':
     $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $maxLength = 30; 
+    $error = checkCharacterLimit($classificationName, $maxLength);
+
+    if (!empty($error)) {
+      $message = "<p style='color:red'>Input value cannot exceed  '$maxLength' characters.</p>";
+      include '../view/add-classification.php';
+      exit;
+    }
+
     if(empty($classificationName)){
         $message = '<p style="color:red">Please provide Vehicle Classificaion.</p>';
         include '../view/add-classification.php';
@@ -72,7 +90,7 @@ case 'class':
     
     // Check and report the result
     if($classOutcome === 1){
-      include ('../view/vehicle-man.php');
+      header ('location: ../vehicles');
       exit;
     } else {
       $message = "<p style='color:red'>Sorry the registration failed. Please try again.</p>";

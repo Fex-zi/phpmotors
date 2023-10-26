@@ -23,4 +23,13 @@ foreach ($classifications as $classification) {
 $navList .= '</ul>';
 return $navList;
 }
+
+//maxlenght code
+function checkCharacterLimit($inputValue, $maxLength) {
+  if (strlen($inputValue) > $maxLength) {
+      return "Input value cannot exceed $maxLength characters.";
+  } else {
+      return ''; // No error; input is within the character limit.
+  }
+}
 ?>

@@ -41,6 +41,7 @@ if (isset($message)) {
 }
 ?>
 <form action="/phpmotors/vehicles/index.php" method="post">
+  
 <select name="classificationId" id="classificationId" required>
     <option disabled selected>Choose Car Classifications</option>
     <?php

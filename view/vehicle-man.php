@@ -25,7 +25,9 @@
 
 <nav>
   <div class="container">
-  <?php echo $navList; ?>
+  <?php 
+  echo $navList; 
+  ?>
 </div>
 </nav>
 

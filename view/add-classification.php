@@ -41,7 +41,7 @@ if (isset($message)) {
 ?>
 
 <form action="/phpmotors/vehicles/index.php" method="post">
-    <label for="classificationName" class="acc">Classification Name</label><br>
+    <label for="classificationName" class="acc">Classification Name</label><br><div style="color:red">&nbsp;&nbsp;Not more than 30 characters</div><br>
       <input type="text" id="classificationName" name="classificationName" class="acc" <?php if(isset($classificationName)){echo "value='$classificationName'";} ?>required><br>
       <input type="submit" class="lgn-btn" value="Add Classification">
       <input type="hidden" name="action" value="class">
