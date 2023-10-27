@@ -17,7 +17,7 @@ function phpmotorsConnect(){
  } catch(PDOException $e) {
 
   //header('Location: /phpmotors/index.php?action=error'); 
-  header('Location: /phpmotors/view/500.php');
+  header('Location: /phpmotors/index.php?action=error');
   exit;
  }
 }

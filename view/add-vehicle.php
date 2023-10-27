@@ -43,7 +43,7 @@ if (isset($message)) {
 <form action="/phpmotors/vehicles/index.php" method="post">
 
 <select name="classificationId" id="classificationId" required>
-    <option disabled selected>Choose Car Classifications</option>
+    <option value="" disabled selected>Choose Car Classifications</option>
     <?php
     foreach ($classifications as $classification) {
         $selected = '';
@@ -57,8 +57,7 @@ if (isset($message)) {
     <?php
     } ?>
 </select>
-
- </select><br><br><br>
+<br><br><br>
 
     <label for="invMake" class="acc">Make</label><br>
       <input type="text" id="invMake" name="invMake" class="acc" required <?php if(isset($invMake)){echo "value='$invMake'";} ?>><br><br>
