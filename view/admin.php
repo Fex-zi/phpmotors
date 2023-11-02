@@ -7,7 +7,7 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.krazybutterfly.com/wp-content/uploads/2023/03/Lagos-Nigeria.jpg">
   <meta property="og:url" content="https://github.com/Fex-zi/phpmotors">
-  <title>PHP Motors | Login </title>
+  <title>Vehicle Management  </title>
   <meta name="description" content="Homepage For PhP Motors">
   <meta name="author" content="Ifeanyi Ojukwu">
   <link rel="icon" href="images/logo.png">
@@ -25,30 +25,17 @@
 
 <nav>
   <div class="container">
-  <?php echo $navList; ?>
+  <?php 
+  echo $navList; 
+  ?>
 </div>
 </nav>
 
 <!-- other content here-->
 <main>  
   
-<div class="div-lgn"> 
-    <h3 class="acc">Sign In</h3><br>
-<?php
-if (isset($_SESSION['message'])) {
-  echo $_SESSION['message'];
- }
-?>
-<form action="/phpmotors/accounts/index.php" method="post">
-    <label for="email" class="acc">Email</label><br>
-      <input type="email" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> id="clientEmail" name="clientEmail" class="acc" required><br><br>
-    <label for="password" class="acc">Password<br> &nbsp;&nbsp;Password must be at least 8 characters with 1 uppercase character, 1 number and 1 special character.</label><br>
-      <input type="password" id="clientPassword" name="clientPassword" class="acc" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
-      <input type="submit" class="lgn-btn" value="Sign-In">
-      <input type="hidden" name="action" value="Login">
-    </form>
-    <br>
-    <a href="/phpmotors/accounts/index.php?action=registration" class="acc">Not a member yet? Sign-UP</a>
+<div class="div1"> 
+Admin
 </div>
 
 </main>

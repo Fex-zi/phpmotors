@@ -7,7 +7,9 @@
            
         </div>
         <div class="logo2">
-        <a href="/phpmotors/accounts/index.php?action=login"> My Account</a>
+        <a href="/phpmotors/accounts/index.php?action=login"><?php if(isset($cookieFirstname)){
+ echo "<span>Welcome $cookieFirstname  | </span>";
+} ?>My Account</a>
         </div>
     </div>
 </header>
