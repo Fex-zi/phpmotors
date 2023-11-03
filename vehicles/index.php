@@ -24,10 +24,28 @@ if ($action == NULL) {
   $action = filter_input(INPUT_GET, 'action');
 }
 
-// Check if the firstname cookie exists, get its value
-if(isset($_COOKIE['firstname'])){
-  $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  $cookieFirstname = ucfirst($cookieFirstname);
+ // Check if the user is logged in and Clientlevel is >1 (i.e., 'loggedin' session variable is set)
+ if (isset($_SESSION['loggedin'])) {
+  // Access the user's data from the session
+  $clientData = $_SESSION['clientData'];
+  
+  // Check if the client's level is greater than 1
+  $clientLevel = $clientData['clientLevel'];
+  
+  if ($clientLevel > 1) {
+      // Display the user's details
+      $clientFirstname = ucfirst($clientData['clientFirstname']);
+      $clientLastname = ucfirst($clientData['clientLastname']);
+      $clientEmail = $clientData['clientEmail'];
+  } else {
+      // Redirect the client to the main page or handle the case where the client's level is not sufficient
+      header('Location: /phpmotors/index.php');
+      exit;
+  }
+ } else {
+  // Redirect the client to the main page if they are not logged in
+  header('Location: /phpmotors/index.php');
+  exit;
  }
  
 // Handle different actions based on the 'action' parameter
@@ -75,17 +93,12 @@ case 'register':
     // Check and report the result
     if($regOutcome === 1){
       $message = "<p style='color:Blue'>Your Vehicle '$invMake - $invModel' has been added successfully.</p>";
-      unset($invMake);
-      unset($invModel);
-      unset($invDescription);
-      unset($invImage);
-      unset($invThumbnail);
-      unset($invPrice);
-      unset($invStock);
-      unset($invColor);
-      unset($_POST['classificationId']);
-      include '../view/add-vehicle.php';
-      exit;
+
+    //unset form
+    unset($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $_POST['classificationId']);
+
+    include '../view/add-vehicle.php';
+    exit;
     } else {
       $message = "<p style='color:red'>Sorry Vehicle registration failed. Please try again.</p>";
       include '../view/add-vehicle.php';

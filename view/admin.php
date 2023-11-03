@@ -1,3 +1,9 @@
+<?php 
+if (!isset($_SESSION['loggedin'])) 
+{ 
+    header('Location: /phpmotors/index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +41,18 @@
 <main>  
   
 <div class="div1"> 
-Admin
+<?php echo "Welcome,  $clientFirstname  $clientLastname"; ?>
+<h5>You are Logged in: </h5>
+
+<p class="box-p1">&bull; Firstname : <?php echo $clientFirstname; ?></p>
+<p class="box-p1">&bull; Lastname : <?php echo $clientLastname; ?></p>
+<p class="box-p1">&bull; Email : <?php echo $clientEmail; ?></p>
+<?php if($clientLevel==3) { ?>
+<h4>Inventory Management</h4>
+<h6> Use this link below to manage the inventory.</h6>
+<h6><a href="/phpmotors/vehicles/" class="acc">Vehicle Management</a></h6>
+
+<?php } ?>
 </div>
 
 </main>

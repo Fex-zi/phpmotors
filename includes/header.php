@@ -7,9 +7,7 @@
            
         </div>
         <div class="logo2">
-        <a href="/phpmotors/accounts/index.php?action=login"><?php if(isset($cookieFirstname)){
- echo "<span>Welcome $cookieFirstname  | </span>";
-} ?>My Account</a>
+            <?php if (isset($_SESSION['loggedin'])) { ?> <a href="/phpmotors/accounts/?action=admin"><?php echo "<span>Welcome,  $clientFirstname </span>";  ?></a> | <a href="/phpmotors/accounts/index.php?action=logout">Logout</a> <?php } else {?> <a href="/phpmotors/accounts/index.php?action=login">My Account</a> <?php } ?>
         </div>
     </div>
 </header>

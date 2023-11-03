@@ -23,12 +23,18 @@ if ($action == NULL) {
   $action = filter_input(INPUT_GET, 'action');
 }
 
-// Check if the firstname cookie exists, get its value
-if(isset($_COOKIE['firstname'])){
-  $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  $cookieFirstname = ucfirst($cookieFirstname);
- }
- 
+// Check if the user is logged in (i.e., 'loggedin' session variable is set)
+if (isset($_SESSION['loggedin'])) {
+  // Access the user's data from the session
+  $clientData = $_SESSION['clientData'];
+  // Display the user's name and email
+  $clientFirstname = ucfirst($clientData['clientFirstname']);
+  $clientLastname = ucfirst($clientData['clientLastname']);
+  $clientEmail = $clientData['clientEmail'];
+  $clientLevel = $clientData['clientLevel'];
+}
+
+
 // Handle different actions based on the 'action' parameter
 switch ($action) {
 
@@ -123,6 +129,15 @@ case 'admin':
     // Handle login action
     include ('../view/admin.php');
     break;
+
+//logout admin/user
+case 'logout':
+  // Unset session variables
+  $_SESSION = array();
+  // Destroy the session 
+  session_destroy();
+  header ('location: /phpmotors/index.php');
+  break;
 
 
 case 'login':
