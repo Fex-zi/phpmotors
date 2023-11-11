@@ -17,9 +17,9 @@ $classifications = getClassifications();
 // Navigation Function
 $navList = getnavlist($classifications);
 
-$action = filter_input(INPUT_POST, 'action');
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if ($action == NULL) {
-  $action = filter_input(INPUT_GET, 'action');
+  $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 /* Check if the firstname cookie exists, get its value

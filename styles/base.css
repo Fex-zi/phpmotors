@@ -102,7 +102,6 @@ footer {
 .div1{
   background: var(--main-color2);
   font-size: x-large;
-  font-weight: bold;
   padding: 20px;
 }
 
@@ -112,7 +111,7 @@ footer {
 }
 
 hr{
-  background-color: var(--main-color);
+  background-color: var(--accent2-color);
   border-width: 2px;
 }
 

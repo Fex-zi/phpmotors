@@ -41,13 +41,25 @@ if (!isset($_SESSION['loggedin']))
 <main>  
   
 <div class="div1"> 
+<?php
+ if (isset($_SESSION['message'])) {
+  echo $_SESSION['message'];
+ } 
+ ?>
+
 <?php echo "Welcome,  $clientFirstname  $clientLastname"; ?>
 <h5>You are Logged in: </h5>
 
 <p class="box-p1">&bull; Firstname : <?php echo $clientFirstname; ?></p>
 <p class="box-p1">&bull; Lastname : <?php echo $clientLastname; ?></p>
 <p class="box-p1">&bull; Email : <?php echo $clientEmail; ?></p>
+<hr>
+<h4>Account Management</h4>
+<h6> Use this link below to update account information.</h6>
+<h6><a href="?action=update" class="acc">Update Account Information</a></h6>
+
 <?php if($clientLevel==3) { ?>
+  <hr>
 <h4>Inventory Management</h4>
 <h6> Use this link below to manage the inventory.</h6>
 <h6><a href="/phpmotors/vehicles/" class="acc">Vehicle Management</a></h6>
@@ -61,3 +73,4 @@ if (!isset($_SESSION['loggedin']))
 </div>
 </body>
 </html>
+<?php unset($_SESSION['message']); ?>

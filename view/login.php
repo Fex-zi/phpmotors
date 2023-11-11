@@ -40,15 +40,15 @@ if (isset($_SESSION['message'])) {
  }
 ?>
 <form action="/phpmotors/accounts/index.php" method="post">
-    <label for="email" class="acc">Email</label><br>
+    <label for="clientEmail" class="acc">Email</label><br>
       <input type="email" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> id="clientEmail" name="clientEmail" class="acc" required><br><br>
-    <label for="password" class="acc">Password<br> &nbsp;&nbsp;Password must be at least 8 characters with 1 uppercase character, 1 number and 1 special character.</label><br>
+    <label for="clientPassword" class="acc">Password<br> &nbsp;&nbsp;Password must be at least 8 characters with 1 uppercase character, 1 number and 1 special character.</label><br>
       <input type="password" id="clientPassword" name="clientPassword" class="acc" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
       <input type="submit" class="lgn-btn" value="Sign-In">
       <input type="hidden" name="action" value="Login">
     </form>
     <br>
-    <a href="/phpmotors/accounts/index.php?action=registration" class="acc">Not a member yet? Sign-UP</a>
+    <a href="?action=registration" class="acc">Not a member yet? Sign-UP</a>
 </div>
 
 </main>
@@ -57,3 +57,4 @@ if (isset($_SESSION['message'])) {
 </div>
 </body>
 </html>
+<?php unset($_SESSION['message']); ?>

@@ -36,12 +36,31 @@
   
 <div class="div1"> 
 <a href="/phpmotors/vehicles/index.php?action=classification" class="acc">Add classifications</a><br><br>
-<a href="/phpmotors/vehicles/index.php?action=vehicle" class="acc">Add vehicles</a>
+<a href="/phpmotors/vehicles/index.php?action=vehicle" class="acc">Add vehicles</a><br><br>
+<?php
+ if (isset($_SESSION['message'])) {
+  echo $_SESSION['message'];
+ } 
+if (isset($classificationList)) { 
+ echo '<h4>Vehicles By Classification</h4>'; 
+ echo '<p>Choose a classification to see those vehicles</p>'; 
+ echo $classificationList; 
+}
+?>
+<noscript>
+<p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+</noscript>
+<table id="inventoryDisplay"></table>
 </div>
+
+
 
 </main>
 
 <?php include '../includes/footer.php'; ?>
 </div>
+
+<script src="../js/inventory.js"></script>
 </body>
 </html>
+<?php unset($_SESSION['message']); ?>

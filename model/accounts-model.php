@@ -33,12 +33,22 @@
     $stmt->execute();
     $matchEmail = $stmt->fetch(PDO::FETCH_NUM);
     $stmt->closeCursor();
-    if(empty($matchEmail)){
-    return 0;
-    } else {
-    return 1;
+    return $matchEmail;
     }
+  // Check for an existing Firstname
+  function checkExistingupdate($firstname, $Lastname, $Email) {
+    $db =  phpmotorsConnect();
+    $sql = 'SELECT * FROM clients WHERE clientFirstname = :theFirstname AND clientLastname = :theLastname AND clientEmail = :theEmail';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':theFirstname', $firstname, PDO::PARAM_STR);
+    $stmt->bindValue(':theLastname', $Lastname, PDO::PARAM_STR);
+    $stmt->bindValue(':theEmail', $Email, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchfirstname = $stmt->fetch(PDO::FETCH_NUM);
+    $stmt->closeCursor();
+    return $matchfirstname;
   }
+
 
   //login User
   // Get client data based on an email address
@@ -53,4 +63,44 @@
     return $clientData;
   }
   
+  function updateaccount($clientFirstname, $clientLastname, $clientEmail, $clientId)
+  {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+  }
+
+
+  function updatepassword($clientPassword, $clientId)
+  {
+    $db = phpmotorsConnect(); 
+    $sql = 'UPDATE clients SET clientPassword = :clientPassword WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+  }
+
+  // Get client data based on Client ID
+  function getClientById($clientID){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM clients WHERE clientId = :clientbyid';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientbyid', $clientID, PDO::PARAM_INT);
+    $stmt->execute();
+    $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $clientData;
+  }
    ?>
