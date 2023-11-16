@@ -26,22 +26,16 @@ if ($action == NULL) {
 
  // Check if the user is logged in and Clientlevel is >1 (i.e., 'loggedin' session variable is set)
  if (isset($_SESSION['loggedin'])) {
-  // Access the user's data from the session
-  $clientData = $_SESSION['clientData'];
+      // Access the user's data from the session
+      $clientData = $_SESSION['clientData'];
   
-  // Check if the client's level is greater than 1
-  $clientLevel = $clientData['clientLevel'];
-  
-  if ($clientLevel > 1) {
+      // Check if the client's level is greater than 1
+      $clientLevel = $clientData['clientLevel'];
       // Display the user's details
       $clientFirstname = ucfirst($clientData['clientFirstname']);
       $clientLastname = ucfirst($clientData['clientLastname']);
       $clientEmail = $clientData['clientEmail'];
-  } else {  
-      // Redirect the client to the main page or handle the case where the client's level is not sufficient
-      header('Location: /phpmotors/index.php');
-      exit;
-  }
+ 
  } else {
   // Redirect the client to the main page if they are not logged in
   header('Location: /phpmotors/index.php');
@@ -138,7 +132,7 @@ case 'class':
     }
     break;
 
-case 'classification':
+case 'addclassification':
     // Handle class action
     include ('../view/add-classification.php');
     break;
@@ -230,10 +224,40 @@ case 'vehicle':
     include ('../view/add-vehicle.php');
     break;
 
+case 'classification':
+ $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+ $vehicles = getVehiclesByClassification($classificationName);
+ if(!count($vehicles)){
+  $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+ } else {
+  $vehicleDisplay = buildVehiclesDisplay($vehicles);
+  //echo $vehicleDisplay;
+  include '../view/classification.php';
+  exit;
+ }
+ break;
+
+
+ case 'vehDetails':
+  $VehicleID = filter_input(INPUT_GET, 'vehId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $vehicles = getVehiclesByClassification($VehicleID);
+  
+  
+  if(!count($vehicles)){
+    $message = "<p class='notice'>Sorry, no $VehicleID could be found.</p>";
+   } else {
+    $vehicleDetails = VehiclesDetails($vehicles);
+    include ('../view/vehicle-detail.php');
+    exit;
+   }
+  break;
+
     default: 
     $classificationList = buildClassificationList($classifications);
 
     include ('../view/vehicle-man.php');
     break;
 }
+
+
 ?>

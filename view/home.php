@@ -43,7 +43,7 @@
     <p>Fuzzy dice!</p>
     <button class="cta-btn">Own Today</button>
   </div>
-  <img src="images/delorean.jpg" alt="This is an image of delorean"> 
+  <img src="images/vehicles/delorean.jpg" alt="This is an image of delorean"> 
  </div>
    
  <div class="div3">

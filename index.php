@@ -44,31 +44,6 @@ if (isset($_SESSION['loggedin'])) {
 // Handle different actions based on the 'action' parameter
 switch ($action) {
   // Code to deliver the views will be here
-
-    case 'Used':
-        
-        include('view/used.php');
-        break;
-
-    case 'Classic':
-        
-        include('view/classic.php');
-        break;
-
-     case 'Sports':
-       
-        include('view/sports.php');
-        break;
-
-    case 'SUV':
-        
-        include('view/suv.php');
-        break;
-
-     case 'Trucks':
-       
-        include('view/trucks.php');
-        break;
       
      case 'error':
           // Handle error action
