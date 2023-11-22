@@ -22,7 +22,7 @@
 
 <body style='background: url("images/site/small_check.jpg"); background-size: cover;'>
 <div class="border-bg">
-<?php require_once('includes/header.php');?>
+<?php require_once("includes/header.php");?>
 
 <?php //require_once('includes/navigation.php'); ?>
 <nav>

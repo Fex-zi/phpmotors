@@ -92,4 +92,65 @@ function VehiclesDetails($vehicles) {
   return $dv;
 }
 
+/* * ********************************
+*  Functions for working with images
+* ********************************* */
+// Adds "-tn" designation to file name
+function makeThumbnailName($image) {
+  $i = strrpos($image, '.');
+  $image_name = substr($image, 0, $i);
+  $ext = substr($image, $i);
+  $image = $image_name . '-tn' . $ext;
+  return $image;
+ }
+
+ // Build images display for image management view
+function buildImageDisplay($imageArray) {
+  $id = '<ul id="inv-display">';
+  foreach ($imageArray as $image) {
+   $id .= '<li>';
+   $id .= "<img src='$image[imgPath]' title='$image[invMake] $image[invModel] image on PHP Motors.com' alt='$image[invMake] $image[invModel] image on PHP Motors.com'>";
+   $id .= "<p style='color:red;'><a href='/phpmotors/uploads?action=delete&imgId=$image[imgId]&filename=$image[imgName]' title='Delete the image'>Delete $image[imgName]</a></p>";
+   $id .= '</li>';
+ }
+  $id .= '</ul>';
+  return $id;
+ }
+
+ // Build the vehicles select list
+function buildVehiclesSelect($vehicles) {
+  $prodList = '<select name="invId" id="invId">';
+  $prodList .= "<option>Choose a Vehicle</option>";
+  foreach ($vehicles as $vehicle) {
+   $prodList .= "<option value='$vehicle[invId]'>$vehicle[invMake] $vehicle[invModel]</option>";
+  }
+  $prodList .= '</select>';
+  return $prodList;
+ }
+
+ // Handles the file upload process and returns the path
+// The file path is stored into the database
+function uploadFile($name) {
+  // Gets the paths, full and local directory
+  global $image_dir, $image_dir_path;
+  if (isset($_FILES[$name])) {
+   // Gets the actual file name
+   $filename = $_FILES[$name]['name'];
+   if (empty($filename)) {
+    return;
+   }
+  // Get the file from the temp folder on the server
+  $source = $_FILES[$name]['tmp_name'];
+  // Sets the new path - images folder in this directory
+  $target = $image_dir_path . '/' . $filename;
+  // Moves the file to the target folder
+  move_uploaded_file($source, $target);
+  // Send file for further processing
+  processImage($image_dir_path, $filename);
+  // Sets the path for the image for Database storage
+  $filepath = $image_dir . '/' . $filename;
+  // Returns the path where the file is stored
+  return $filepath;
+  }
+ }
 ?>
