@@ -295,6 +295,8 @@ input:required:valid{
       margin-bottom: 10px; 
       transition: transform 0.3s ease-in-out;
       cursor: pointer;
+      height: 80px;
+      border-radius: 3px;
   }
   
   .image-container {
@@ -303,7 +305,7 @@ input:required:valid{
 
   .image-container img {
     width: 100%;
-    height: auto;
+    height: 260px;
     border-radius: 5px;
   }
 
