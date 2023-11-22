@@ -259,12 +259,6 @@ input:required:valid{
   transition: transform 0.2s ease-in-out;
 }
 
-#inv-display li:hover {
-  transform: scale(1.05);
-
-}
-
-
 
 #inv-display h2 {
   margin-top: 10px;
@@ -276,43 +270,54 @@ input:required:valid{
   margin-top: 10px;
   font-weight: bold;
   color: #4CAF50;
-}      
+} 
 
-/* Vehicle Description */
-.inv-details {
-  list-style: none;
-  padding: 0;
-}
+  .inv-details {
+    list-style: none;
+    padding: 0;
+  }
 
-.vehicle-details {
-  width: 98%;
-  margin: 10px;
-  display: flex;
-  background-color: #f4f4f4;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  /* Vehicle Description */
+  .vehicle-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 
-.image-container {
-  flex: 1;
-}
+  .thumbnail-container {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  
+  .thumbnail-container img {
+      width: 110px; 
+      margin-right: 10px; 
+      margin-bottom: 10px; 
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+  }
+  
+  .image-container {
+    flex: 1;
+  }
 
-.image-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
+  .image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
 
-.description-container {
-  flex: 1;
-  padding-left: 20px; 
-}
+  .description-container {
+    flex: 1;
+    padding-left: 20px;
+  }
 
-.description-container-right {
-  flex: 1;
-  text-align: left;
-}
+  .description-container-right {
+    flex: 1;
+    text-align: left;
+  }
+
+
 @media screen and (max-width: 767px) {
   .vehicle-details {
       flex-direction: column;

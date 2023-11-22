@@ -155,4 +155,22 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
      // Free any memory associated with the old image
      imagedestroy($old_image);
    } // ends resizeImage function
+
+
+  
+function getThumbnailsByVehicleId($vehicleId) {
+    $db = phpmotorsConnect();
+
+    $sql = 'SELECT imgName, imgPath FROM images WHERE invId = :vehicleId AND imgPath LIKE :thumbnailPath';
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':vehicleId', $vehicleId, PDO::PARAM_INT);
+    $stmt->bindValue(':thumbnailPath', '%-tn%', PDO::PARAM_STR); //thumbnails that have "-tn" in the file name
+    $stmt->execute();
+
+    $thumbnails = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
+    return $thumbnails;
+}
 ?>

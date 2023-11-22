@@ -99,16 +99,54 @@
     return $rowsChanged;
    }
    
-   function getVehiclesByClassification($classificationName){
+   // Limit images to primary thumbnails with "tn"
+   function getVehiclesByClassification($classificationName) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName OR invId = :classificationName)';
+
+    $sql = 'SELECT inventory.*, images.imgName, images.imgPath FROM inventory
+            JOIN images ON inventory.invId = images.invId
+            WHERE inventory.classificationId IN (
+                SELECT classificationId 
+                FROM carclassification 
+                WHERE classificationName = :classificationName OR inventory.invId = :classificationName
+            )
+            AND images.imgPrimary = 1
+            AND images.imgPath LIKE :thumbnailPath'; // Limit images to primary thumbnails with "tn"
+            
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->bindValue(':thumbnailPath', '%-tn%', PDO::PARAM_STR); // Filter images with "tn" in the path
     $stmt->execute();
+    
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicles;
-   }
+}
+
+// Limit images to primary thumbnails without "tn"
+function getVehiclesByClassification2($classificationName) {
+  $db = phpmotorsConnect();
+
+  $sql = 'SELECT inventory.*, images.imgName, images.imgPath
+          FROM inventory
+          JOIN images ON inventory.invId = images.invId
+          WHERE inventory.classificationId IN (
+              SELECT classificationId 
+              FROM carclassification 
+              WHERE classificationName = :classificationName OR inventory.invId = :classificationName
+          )
+          AND images.imgPrimary = 1
+          AND images.imgPath NOT LIKE :thumbnailPath'; // Limit images to primary thumbnails without "tn"
+          
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+  $stmt->bindValue(':thumbnailPath', '%-tn%', PDO::PARAM_STR); // Filter images without "tn" in the path
+  $stmt->execute();
+  
+  $notnvehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $notnvehicles;
+} 
 
    function getVehicles(){
     $db = phpmotorsConnect();

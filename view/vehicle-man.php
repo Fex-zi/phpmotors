@@ -48,7 +48,7 @@ if ($clientLevel <= 1) {
   echo $_SESSION['message'];
  } 
 if (isset($classificationList)) { 
- echo '<h4>Vehicles By Classification</h4>'; 
+ echo '<h4>Update Vehicles By Classification</h4>'; 
  echo '<p>Choose a classification to see those vehicles</p>'; 
  echo $classificationList; 
 }

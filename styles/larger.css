@@ -61,6 +61,18 @@ nav a {
   display: none;
 }
 
+/* Change to a column layout on smaller screens */
+.thumbnail-container {
+  flex-direction: column; 
+}
 
+.thumbnail-container img:hover {
+  transform: scale(1.7); /* Enlarge the image on hover */
+}
+
+#inv-display li:hover {
+  transform: scale(1.05);
+
+}
 
 }

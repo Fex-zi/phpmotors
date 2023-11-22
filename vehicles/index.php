@@ -11,6 +11,9 @@ require_once ('../model/vehicles-model.php');
 //get functions
 require_once ('../library/functions.php');
 
+//uploads model
+require_once ('../model/uploads-model.php');
+
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -228,7 +231,7 @@ case 'classification':
  $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
  $vehicles = getVehiclesByClassification($classificationName);
  if(!count($vehicles)){
-  $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+  $message = "<p style='color:red'>Sorry, no $classificationName could be found.</p>";
  } else {
   $vehicleDisplay = buildVehiclesDisplay($vehicles);
   //echo $vehicleDisplay;
@@ -240,13 +243,14 @@ case 'classification':
 
  case 'vehDetails':
   $VehicleID = filter_input(INPUT_GET, 'vehId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  $vehicles = getVehiclesByClassification($VehicleID);
+  $vehicles = getVehiclesByClassification2($VehicleID);
+  $vehicles_tn = getThumbnailsByVehicleId($VehicleID);
   
   
   if(!count($vehicles)){
-    $message = "<p class='notice'>Sorry, no $VehicleID could be found.</p>";
+    $message = "<p style='color:red'>Sorry, no Vehicle could be found.</p>";
    } else {
-    $vehicleDetails = VehiclesDetails($vehicles);
+    $vehicleDetails = VehiclesDetails($vehicles, $vehicles_tn);
     include ('../view/vehicle-detail.php');
     exit;
    }

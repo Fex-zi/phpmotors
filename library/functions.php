@@ -53,7 +53,7 @@ function buildClassificationList($classifications){
       $formattedPrice = '$' . number_format($vehicle['invPrice'], 0, '.', ',');
       
       $dv .= "<a href='/phpmotors/vehicles/?action=vehDetails&vehId=$vehicle[invId]'><li>";
-      $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+      $dv .= "<img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
       $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
       $dv .= "<span>$formattedPrice</span>";
       $dv .= '</li></a>';
@@ -64,16 +64,26 @@ function buildClassificationList($classifications){
   return $dv;
 }
 
-// vehicles Details view.
-function VehiclesDetails($vehicles) {
+//Get vehicle details
+function VehiclesDetails($vehicles, $vehicles_tn) {
   $dv = '<ul class="inv-details">';
 
   foreach ($vehicles as $vehicle) {
       $formattedPrice = '$' . number_format($vehicle['invPrice'], 0, '.', ',');
 
       $dv .= "<li class='vehicle-details'>";
+
+      // Display thumbnail images
+      $dv .= "<div class='thumbnail-container'>";
+
+      foreach ($vehicles_tn as $vehicle_tn) {
+          $dv .= "<img src='{$vehicle_tn['imgPath']}' alt='Thumbnail'>";
+      }
+
+      $dv .= "</div>";
+
       $dv .= "<div class='image-container'>";
-      $dv .= "<img src='{$vehicle['invImage']}' alt='Image of {$vehicle['invMake']} {$vehicle['invModel']} on phpmotors.com'>";
+      $dv .= "<img src='{$vehicle['imgPath']}' alt='Image of {$vehicle['invMake']} {$vehicle['invModel']} on phpmotors.com'>";
       $dv .= "</div>";
       $dv .= "<div class='description-container'>";
       $dv .= "<h2>{$vehicle['invMake']} {$vehicle['invModel']}</h2>";
@@ -85,12 +95,15 @@ function VehiclesDetails($vehicles) {
       $dv .= "<p>Color: {$vehicle['invColor']}</p>";
       $dv .= "<p>#Inv in Stock: {$vehicle['invStock']}</p>";
       $dv .= "</div>";
+
       $dv .= '</li>';
   }
 
   $dv .= '</ul>';
   return $dv;
 }
+
+
 
 /* * ********************************
 *  Functions for working with images
