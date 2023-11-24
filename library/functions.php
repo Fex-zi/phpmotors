@@ -77,7 +77,7 @@ function VehiclesDetails($vehicles, $vehicles_tn) {
       $dv .= "<div class='thumbnail-container'>";
 
       foreach ($vehicles_tn as $vehicle_tn) {
-          $dv .= "<img src='{$vehicle_tn['imgPath']}' alt='Thumbnail'>";
+          $dv .= "<img src='{$vehicle_tn['imgPath']}' alt='{$vehicle_tn['imgPath']}'>";
       }
 
       $dv .= "</div>";
