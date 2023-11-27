@@ -1,10 +1,10 @@
 <?php 
 
 function phpmotorsConnect(){
- $password = 'ifesco'; 
+ $password = ''; 
  $server = 'Localhost';
  $dbname= 'phpmotors';
- $username = 'Ifeanyi';
+ $username = 'root';
 
  
  $dsn = "mysql:host=$server;dbname=$dbname";
@@ -16,7 +16,6 @@ function phpmotorsConnect(){
   return $link;
  } catch(PDOException $e) {
 
-  //header('Location: /phpmotors/index.php?action=error'); 
   header('Location: /phpmotors/index.php?action=error');
   exit;
  }
