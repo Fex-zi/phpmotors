@@ -39,11 +39,7 @@ if ($action == NULL) {
       $clientLastname = ucfirst($clientData['clientLastname']);
       $clientEmail = $clientData['clientEmail'];
  
- } else {
-  // Redirect the client to the main page if they are not logged in
-  header('Location: /phpmotors/index.php');
-  exit;
- }
+ } 
  
 // Handle different actions based on the 'action' parameter
 switch ($action) {
