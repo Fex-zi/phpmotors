@@ -14,6 +14,10 @@ require_once ('../library/functions.php');
 //uploads model
 require_once ('../model/uploads-model.php');
 
+//add reviews
+//reviews model
+require_once ('../model/reviews-model.php');
+
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -38,6 +42,7 @@ if ($action == NULL) {
       $clientFirstname = ucfirst($clientData['clientFirstname']);
       $clientLastname = ucfirst($clientData['clientLastname']);
       $clientEmail = $clientData['clientEmail'];
+      $clientId = $clientData['clientId'];
  
  } 
  
@@ -238,15 +243,18 @@ case 'classification':
 
 
  case 'vehDetails':
-  $VehicleID = filter_input(INPUT_GET, 'vehId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $VehicleID = filter_input(INPUT_GET, 'vehId', FILTER_SANITIZE_NUMBER_INT);
   $vehicles = getVehiclesByClassification2($VehicleID);
   $vehicles_tn = getThumbnailsByVehicleId($VehicleID);
+  $invget = viewReview($VehicleID);
+  
   
   
   if(!count($vehicles)){
     $message = "<p style='color:red'>Sorry, no Vehicle could be found.</p>";
    } else {
     $vehicleDetails = VehiclesDetails($vehicles, $vehicles_tn);
+    $invreviews = vehicleReview($invget);
     include ('../view/vehicle-detail.php');
     exit;
    }

@@ -214,6 +214,11 @@ z-index: 1;
 .acc{
   margin: 9px;
 }
+.acc-tx{
+  width: 100%;
+  margin: 9px;
+  height: 100px;
+}
 
 .div-lgn{
   background: var(--main-color2);
@@ -319,7 +324,32 @@ input:required:valid{
     flex: 1;
     text-align: left;
   }
+  
+  /*Reviews*/
+  .creview {
+    background: var(--main-color);
+    color: var(--main-color2);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px; /* Add some spacing between individual reviews */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease; /* Add a smooth transition for background color change */
+  
+  }
+  
+  .rtxt
+  {
+    background: var(--main-color2);
+    color: var(--main-color);
+    border-radius: 3px;
+    padding: 5px;
 
+  }
+  .creview:hover {
+    cursor: pointer;
+    background: var(--accent2-color); /* Change background color on hover */
+    color: var(--main-color2);
+  }
 
 @media screen and (max-width: 767px) {
   .vehicle-details {

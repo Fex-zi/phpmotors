@@ -42,9 +42,39 @@
  echo $vehicleDetails;
 } ?>
 
+<hr>
+<div class="div1">
+<h4> Customer Reviews </h4>
+<?php 
+if (isset($_SESSION['loggedin'])) 
+{ 
+?>
+<h4> Review the <?php echo $vehicles[0]['invMake'] .'&nbsp;'. $vehicles[0]['invModel']; ?></h4>
+<?php
+if (isset($_SESSION['message'])) {
+  echo $_SESSION['message'];
+ }
+?>
+<form action="/phpmotors/reviews/" method="post">
+    <label for="clientName" class="acc">Screen Name:</label><br>
+      <input type="text" readonly <?php $Ln = mb_substr($clientLastname, 0, 1); echo "value='$Ln$clientFirstname'"; ?> id="clientName"  class="acc"><br><br>
+      
+    <label for="clientReview" class="acc">Review:</label><br>
+    <textarea  id="clientReview" name="clientReview" class="acc-tx" required ></textarea><br>
+      <input type="submit" class="lgn-btn" value="Submit Review">
+      <input type="hidden"  name="clientId" value="<?php echo $clientId; ?>" >
+      <input type="hidden"  name="vehId" value="<?php echo $vehicles[0]['invId'];  ?>" >
+      <input type="hidden"  name="action" value="review">     
+</form>
+<?php } else { ?> You must <a href="/phpmotors/accounts/index.php?action=login">Login</a> to write a review.<?php } ?>
+<br><br>
+
+<?php echo $invreviews; ?>
+</div>
 </main>
 
 <?php include '../includes/footer.php'; ?>
 </div>
 </body>
 </html>
+<?php unset($_SESSION['message']); ?>

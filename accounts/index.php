@@ -11,6 +11,13 @@ require_once ('../model/accounts-model.php');
 // Validation
 require_once ('../library/functions.php');
 
+//reviews model
+require_once ('../model/reviews-model.php');
+
+
+//view reviews
+$invget = oneReview();
+$invreviews = oneuserReview($invget);
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -246,7 +253,7 @@ case 'registration':
 
     default:
     // Default case: Include the login view if no valid action is specified
-    include('../view/login.php');
+    include('../view/admin.php');
     break;
 }
 ?>

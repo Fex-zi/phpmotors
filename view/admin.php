@@ -65,6 +65,12 @@ if (!isset($_SESSION['loggedin']))
 <h6><a href="/phpmotors/vehicles/" class="acc">Vehicle Management</a></h6>
 
 <?php } ?>
+
+<hr>
+<h4>Manage Your Product Reviews</h4>
+<h6> Use this link below to update product review.</h6>
+<?php echo $invreviews; ?>
+
 </div>
 
 </main>

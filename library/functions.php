@@ -103,6 +103,46 @@ function VehiclesDetails($vehicles, $vehicles_tn) {
   return $dv;
 }
 
+//Reviews
+function vehicleReview($reviews)
+{
+    $dv = '';
+
+    if (empty($reviews)) {
+        $dv .= "<p class='creview'>Be the first to write a review.</p>";
+    } else {
+        foreach ($reviews as $review) {
+            $reviewText = ucfirst($review['reviewText']);
+            $screenName = substr(ucfirst($review['clientFirstname']), 0, 1) . $review['clientLastname'];
+            $reviewDate = date('F j, Y', strtotime($review['reviewDate']));
+
+            $dv .= "<div class='creview'>
+            <span class='rtxt'> <i>{$screenName} Wrote on {$reviewDate}</i> </span>
+                        <p>{$reviewText}</p>
+                       
+                    </div>";
+        }
+    }
+
+    $dv .= '';
+    return $dv;
+}
+
+//One user Reviews
+function oneuserReview($reviews)
+{
+    $dv = '';
+    if (empty($reviews)) {
+        $dv .= "<p class='creview'>You have no reviews to edit</p>";
+    } else {
+        foreach ($reviews as $review) {
+            $reviewDate = date('F j, Y', strtotime($review['reviewDate']));
+            $dv .= "<div class='creview'><span > <i>{$review['invMake']} {$review['invModel']} (Reviewed on {$reviewDate}) </i>: Edit | Delete </span></div>";
+        }
+    }
+    $dv .= '';
+    return $dv;
+}
 
 
 /* * ********************************

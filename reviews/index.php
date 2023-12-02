@@ -14,6 +14,9 @@ require_once ('../library/functions.php');
 //uploads model
 require_once ('../model/uploads-model.php');
 
+//reviews model
+require_once ('../model/reviews-model.php');
+
 
 
 // Get the array of classifications
@@ -49,10 +52,40 @@ if (isset($_SESSION['loggedin'])) {
 // Handle different actions based on the 'action' parameter
 switch ($action) {
   // Code to deliver the views will be here
+
+      case 'review':
+        $VehicleID = filter_input(INPUT_POST, 'vehId', FILTER_SANITIZE_NUMBER_INT);
+        $ClientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+        $ClientReview = filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+        
+        if (empty($VehicleID) || empty($ClientId) || empty($ClientReview)) {
+        $message2 = '<p style="color:red"><i>Review cant be empty.</i></p>';
+        $_SESSION['message'] = $message2;
+        header ("location: /phpmotors/vehicles/?action=vehDetails&vehId=".$VehicleID."");        
+        exit; 
+      }
+       
+      $VehReview = Addreview($ClientReview,$VehicleID,$ClientId);
+        
+        if(!$VehReview)
+        {
+          $message2 = "<p style='color:red'><i>Sorry, Review couldn't be added, Retry again!!!</i></p>";  
+          $_SESSION['message'] = $message2;
+          header ("location: /phpmotors/vehicles/?action=vehDetails&vehId=".$VehicleID."");        
+          exit;   
+        }
+        else{
+          $message2 = "<p style='color:blue'><i>Thanks for the review, it's displayed below.</i></p>";
+          $_SESSION['message'] = $message2;
+          header ("location: /phpmotors/vehicles/?action=vehDetails&vehId=".$VehicleID."");
+         exit;
+        }       
+        break;
       
      case 'error':
           // Handle error action
-        include ('view/500.php');
+        include ('../view/500.php');
         break;
 
     default:
