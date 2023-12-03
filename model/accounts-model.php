@@ -104,13 +104,5 @@
     return $clientData;
   }
 
-  //get current user by ID
-  function getCurrentUserId() {
-    // Check if the user is logged in
-    if (isset($_SESSION['clientData']) && isset($_SESSION['clientData']['clientId'])) {
-        return $_SESSION['clientData']['clientId'];
-    } else {
-        //header ('location:../view/login.php');
-    }
-}
+
    ?>

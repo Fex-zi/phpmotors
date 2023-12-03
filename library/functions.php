@@ -107,7 +107,6 @@ function VehiclesDetails($vehicles, $vehicles_tn) {
 function vehicleReview($reviews)
 {
     $dv = '';
-
     if (empty($reviews)) {
         $dv .= "<p class='creview'>Be the first to write a review.</p>";
     } else {
@@ -115,15 +114,10 @@ function vehicleReview($reviews)
             $reviewText = ucfirst($review['reviewText']);
             $screenName = substr(ucfirst($review['clientFirstname']), 0, 1) . $review['clientLastname'];
             $reviewDate = date('F j, Y', strtotime($review['reviewDate']));
-
             $dv .= "<div class='creview'>
-            <span class='rtxt'> <i>{$screenName} Wrote on {$reviewDate}</i> </span>
-                        <p>{$reviewText}</p>
-                       
-                    </div>";
+            <span class='rtxt'> <i>{$screenName} Wrote on {$reviewDate}</i> </span> <p>{$reviewText}</p>   </div>";
         }
     }
-
     $dv .= '';
     return $dv;
 }
@@ -137,13 +131,22 @@ function oneuserReview($reviews)
     } else {
         foreach ($reviews as $review) {
             $reviewDate = date('F j, Y', strtotime($review['reviewDate']));
-            $dv .= "<div class='creview'><span > <i>{$review['invMake']} {$review['invModel']} (Reviewed on {$reviewDate}) </i>: Edit | Delete </span></div>";
+            $dv .= "<div class='creview'><span > <i>{$review['invMake']} {$review['invModel']} (Reviewed on {$reviewDate}) </i>: <a style='color:white' href='/phpmotors/reviews/?action=updateReview&rivId={$review['reviewId']}'>Edit</a> | <a style='color:white' href='/phpmotors/reviews/?action=delete&rivId={$review['reviewId']}'>Delete</a> </span></div>";
         }
     }
     $dv .= '';
     return $dv;
 }
 
+ //get current user by ID
+ function getCurrentUserId() {
+  // Check if the user is logged in
+  if (isset($_SESSION['clientData']) && isset($_SESSION['clientData']['clientId'])) {
+      return $_SESSION['clientData']['clientId'];
+  } else {
+      //header ('location:../view/login.php');
+  }
+}
 
 /* * ********************************
 *  Functions for working with images

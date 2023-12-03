@@ -32,9 +32,10 @@ function viewReview($invId)
     return $invInfo;
 }
 
+//get review based on loggedin user
 function oneReview()
 {    
-    //function is from account-model
+    //function is from library/functions.php
     $clientId = getCurrentUserId();
     //$clientId = $_SESSION['clientData']['clientId'];
     $db = phpmotorsConnect();
@@ -53,5 +54,60 @@ function oneReview()
     return $invInfo;
 }
 
+//get review based on loggedin user
+function oneReviewview($reviewId)
+{    
+    //$clientId = $_SESSION['clientData']['clientId'];
+    $db = phpmotorsConnect();
+    $sql = 'SELECT r.*, c.clientId, c.clientFirstname, c.clientLastname, i.invId, i.invMake, i.invModel, i.classificationId
+            FROM reviews r
+            JOIN clients c ON r.clientId = c.clientId
+            JOIN inventory i ON r.invId = i.invId
+            WHERE r.reviewId = :reviewid';
+    
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':reviewid', $reviewId, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $invInfo;
+}
 
+function updatereview($text, $rId)
+{
+  $db = phpmotorsConnect(); 
+  $sql = 'UPDATE reviews SET reviewText = :clienttxt WHERE reviewId = :clientId';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':clienttxt', $text, PDO::PARAM_STR);
+  $stmt->bindValue(':clientId', $rId, PDO::PARAM_INT);
+  $stmt->execute();
+  $rowsChanged = $stmt->rowCount();
+  $stmt->closeCursor();
+  return $rowsChanged;
+}
+
+ // Check for an existing review
+ function checkExistingReview($rtxt) {
+    $db =  phpmotorsConnect();
+    $sql = 'SELECT reviewText FROM reviews WHERE reviewText = :txt';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':txt', $rtxt, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchReview = $stmt->fetch(PDO::FETCH_NUM);
+    $stmt->closeCursor();
+    return $matchReview;
+    }
+
+ // Delete Review
+ function deleteReview($rId) {
+    $db = phpmotorsConnect();
+    $sql = 'DELETE FROM reviews WHERE reviewId = :rvid';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':rvid', $rId, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+   }
 ?>

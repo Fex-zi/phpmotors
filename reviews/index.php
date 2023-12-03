@@ -18,7 +18,6 @@ require_once ('../model/uploads-model.php');
 require_once ('../model/reviews-model.php');
 
 
-
 // Get the array of classifications
 $classifications = getClassifications();
 
@@ -82,7 +81,99 @@ switch ($action) {
          exit;
         }       
         break;
+
+     //Update Review view
+     case 'updateReview':
+      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT);
+
+      if (empty($Reviewbyid)) {
+        header ("location:/phpmotors/accounts/?action=admin");    
+        exit; 
+      }
+
+      $checkRev = oneReviewview($Reviewbyid);
+
+      if (!$checkRev) {
+        header ("location:/phpmotors/accounts/?action=admin");    
+        exit; 
+      }
+
+      include ('../view/review-update.php');
+      break;
+    
+
+     //update contoller
+     case 'update':
+     $Review = filter_input(INPUT_POST, 'revId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
+     $reviewtxt = filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+
+     if (empty($Review) || empty($reviewtxt)) {
+      $_SESSION['message'] = "<p style='color:red'>Review Can't be Empty</p>";
+      header ("location:/phpmotors/reviews/?action=updateReview&rivId=".$Review."");    
+      exit; 
+     }
+
+     $check = checkExistingReview($reviewtxt);
+     if ($check){
+      $_SESSION['message'] = "<p style='color:red'>You didn't make any changes yet!!!</p>";
+      header ("location:/phpmotors/reviews/?action=updateReview&rivId=".$Review.""); 
+      exit; 
+     }
+
+     $updater = updatereview($reviewtxt, $Review);
+     if($updater){
+      $_SESSION['message'] = "<p style='color:blue'>Review Update was Successful</p>";
+      header ("location:/phpmotors/accounts/?action=admin");    
+      exit; 
+     } else{
+      $_SESSION['message'] = "<p style='color:red'>Review Update was unsuccessful</p>";
+      header ("location:/phpmotors/reviews/?action=updateReview&rivId=".$Review.""); 
+      exit;  
+     }
+     break;
+
+
+     //delete contoller view
+     case 'delete':
+      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT);
+
+      if (empty($Reviewbyid)) {
+        header ("location:/phpmotors/accounts/?action=admin");    
+        exit; 
+      }
+      $checkRev = oneReviewview($Reviewbyid);
+
+      if (!$checkRev) {
+        header ("location:/phpmotors/accounts/?action=admin");    
+        exit; 
+      }
+      include ('../view/review-delete.php');
+      break;
+  
+     //delete contoller
+     case 'Revdelete':
+      $Review = filter_input(INPUT_POST, 'revId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
       
+      if (empty($Review)) {
+       $_SESSION['message'] = "<p style='color:red'>Review Empty</p>";
+       header ("location:/phpmotors/reviews/?action=delete&rivId=".$Review."");    
+       exit; 
+      }
+ 
+      $updater = deleteReview($Review);
+      if($updater){
+       $_SESSION['message'] = "<p style='color:blue'>Review Delete was Successful</p>";
+       header ("location:/phpmotors/accounts/?action=admin");    
+       exit; 
+      } else{
+       $_SESSION['message'] = "<p style='color:red'>Review Delete was unsuccessful</p>";
+       header ("location:/phpmotors/reviews/?action=delete&rivId=".$Review.""); 
+       exit;  
+      }
+      break;
+
+
      case 'error':
           // Handle error action
         include ('../view/500.php');
@@ -90,7 +181,7 @@ switch ($action) {
 
     default:
         // Default case: Include the home view if no valid action is specified
-        include('../view/admin.php');
+        header ("location:/phpmotors/accounts/?action=admin");
         break;
 }
 ?>

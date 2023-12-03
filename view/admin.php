@@ -54,22 +54,22 @@ if (!isset($_SESSION['loggedin']))
 <p class="box-p1">&bull; Lastname : <?php echo $clientLastname; ?></p>
 <p class="box-p1">&bull; Email : <?php echo $clientEmail; ?></p>
 <hr>
-<h4>Account Management</h4>
-<h6> Use this link below to update account information.</h6>
-<h6><a href="?action=update" class="acc">Update Account Information</a></h6>
+<h5>Account Management</h5>
+<p> Use this link below to update account information.</p>
+<h5><a href="?action=update" class="acc">Update Account Information</a></h5>
 
 <?php if($clientLevel==3) { ?>
   <hr>
-<h4>Inventory Management</h4>
-<h6> Use this link below to manage the inventory.</h6>
-<h6><a href="/phpmotors/vehicles/" class="acc">Vehicle Management</a></h6>
+<h5>Inventory Management</h5>
+ <p>Use this link below to manage the inventory.</p>
+<h5><a href="/phpmotors/vehicles/" class="acc">Vehicle Management</a></h5>
 
 <?php } ?>
 
 <hr>
-<h4>Manage Your Product Reviews</h4>
-<h6> Use this link below to update product review.</h6>
-<?php echo $invreviews; ?>
+<h5>Manage Your Product Reviews</h5>
+<p> Use this link below to update product review.</p>
+<?php if(isset($invreviews)) {echo $invreviews;} ?>
 
 </div>
 

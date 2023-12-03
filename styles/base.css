@@ -108,7 +108,7 @@ footer {
 
 .div1{
   background: var(--main-color2);
-  font-size: x-large;
+  font-size: larger;
   padding: 20px;
 }
 
@@ -209,6 +209,12 @@ z-index: 1;
   border-radius: 4px;
   border: 0;
   margin: 9px;
+  transition: background-color 0.3s ease; /* Add a smooth transition for background color change */
+}
+
+.lgn-btn:hover{
+  background-color: var(--main-color);
+  
 }
 
 .acc{
@@ -280,6 +286,7 @@ input:required:valid{
   .inv-details {
     list-style: none;
     padding: 0;
+    padding: 20px;
   }
 
   /* Vehicle Description */

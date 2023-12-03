@@ -143,7 +143,7 @@ case 'addclassification':
     
 case 'getInventoryItems': 
  // Get the classificationId 
- $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
+ $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT,  FILTER_VALIDATE_INT); 
  // Fetch the vehicles by classificationId from the DB 
  $inventoryArray = getInventoryByClassification($classificationId); 
  // Convert the array to a JSON object and send it back 
@@ -151,8 +151,14 @@ case 'getInventoryItems':
  break;
 
 case 'mod':
- $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+ $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
  $invInfo = getInvItemInfo($invId);
+
+ //if invId is wrong
+ if (!$invInfo) {
+  header ("location:/phpmotors/accounts/?action=admin");    
+  exit; 
+}
  if(count($invInfo)<1){
   $message = 'Sorry, no vehicle information could be found.';
  }
