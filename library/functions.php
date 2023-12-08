@@ -51,7 +51,7 @@ function buildClassificationList($classifications){
   
   foreach ($vehicles as $vehicle) {
       $formattedPrice = '$' . number_format($vehicle['invPrice'], 0, '.', ',');
-      
+      //$dv .= "<a href='/phpmotors/vehicles/?action=vehDetails&vehId=".urlencode($vehicle['invId'])."'><li>"; encode
       $dv .= "<a href='/phpmotors/vehicles/?action=vehDetails&vehId=$vehicle[invId]'><li>";
       $dv .= "<img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
       $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";

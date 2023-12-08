@@ -53,8 +53,8 @@ switch ($action) {
   // Code to deliver the views will be here
 
       case 'review':
-        $VehicleID = filter_input(INPUT_POST, 'vehId', FILTER_SANITIZE_NUMBER_INT);
-        $ClientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+        $VehicleID = filter_input(INPUT_POST, 'vehId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
+        $ClientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
         $ClientReview = filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
         
@@ -84,7 +84,7 @@ switch ($action) {
 
      //Update Review view
      case 'updateReview':
-      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT);
+      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
 
       if (empty($Reviewbyid)) {
         header ("location:/phpmotors/accounts/?action=admin");    
@@ -136,7 +136,7 @@ switch ($action) {
 
      //delete contoller view
      case 'delete':
-      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT);
+      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
 
       if (empty($Reviewbyid)) {
         header ("location:/phpmotors/accounts/?action=admin");    
