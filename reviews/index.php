@@ -53,9 +53,9 @@ switch ($action) {
   // Code to deliver the views will be here
 
       case 'review':
-        $VehicleID = filter_input(INPUT_POST, 'vehId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
-        $ClientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
-        $ClientReview = filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $VehicleID = trim(filter_input(INPUT_POST, 'vehId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT));
+        $ClientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT));
+        $ClientReview = trim(filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         
         
         if (empty($VehicleID) || empty($ClientId) || empty($ClientReview)) {
@@ -84,7 +84,7 @@ switch ($action) {
 
      //Update Review view
      case 'updateReview':
-      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
+      $Reviewbyid = trim(filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT));
 
       if (empty($Reviewbyid)) {
         header ("location:/phpmotors/accounts/?action=admin");    
@@ -104,8 +104,8 @@ switch ($action) {
 
      //update contoller
      case 'update':
-     $Review = filter_input(INPUT_POST, 'revId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
-     $reviewtxt = filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+     $Review = trim(filter_input(INPUT_POST, 'revId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT));
+     $reviewtxt = trim(filter_input(INPUT_POST, 'clientReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     
 
      if (empty($Review) || empty($reviewtxt)) {
@@ -136,7 +136,7 @@ switch ($action) {
 
      //delete contoller view
      case 'delete':
-      $Reviewbyid = filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
+      $Reviewbyid = trim(filter_input(INPUT_GET, 'rivId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT));
 
       if (empty($Reviewbyid)) {
         header ("location:/phpmotors/accounts/?action=admin");    
@@ -153,7 +153,7 @@ switch ($action) {
   
      //delete contoller
      case 'Revdelete':
-      $Review = filter_input(INPUT_POST, 'revId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT);
+      $Review = trim(filter_input(INPUT_POST, 'revId', FILTER_SANITIZE_NUMBER_INT, FILTER_VALIDATE_INT));
       
       if (empty($Review)) {
        $_SESSION['message'] = "<p style='color:red'>Review Empty</p>";

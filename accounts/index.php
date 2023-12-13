@@ -252,7 +252,7 @@ case 'registration':
     break;
 
     default:
-    // Default case: Include the login view if no valid action is specified
+    // Default case: Include the admin view if no valid action is specified
     include('../view/admin.php');
     break;
 }
