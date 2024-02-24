@@ -1,7 +1,7 @@
 <!-- footer.php -->
 <footer >
     <hr>
-        <p>&copy; 2023 PHP Motors. All time reserved.</p>
+        <p>&copy; <?php echo  date("Y") ;?> PHP Motors. All time reserved.</p>        
         <p>All images used are believed to be in 'Fair use'. Please notify the author if they are not and they will be removed.</p>
     <?php
         $current_file_name = basename($_SERVER['PHP_SELF']);

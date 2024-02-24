@@ -180,7 +180,7 @@ switch ($action) {
         break;
 
     default:
-        // Default case: Include the home view if no valid action is specified
+        // Default case: Include the admin view if no valid action is specified
         header ("location:/phpmotors/accounts/?action=admin");
         break;
 }
